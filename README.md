@@ -1,2 +1,2 @@
 # elepy
-ele.me open api sdk
+sdk for eleme open api
