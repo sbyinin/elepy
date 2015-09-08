@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
-from ele.restaurant import Restaurant
-from way.test import test_config
 
 my_path = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, my_path + '/../')
+from ele.restaurant import Restaurant
+from config import test_config
 
 __author__ = 'way'
 
@@ -15,8 +15,8 @@ clt = Restaurant(**test_config)
 
 
 def test_get_restaurant():
-    restautant = clt.get_restaurant(restaurant_id)
-    assert restautant["restaurant_id"] == restaurant_id
+    restaurant = clt.get_restaurant(restaurant_id)
+    assert restaurant["restaurant_id"] == restaurant_id
 
 
 def test_get_restaurant_food_list():

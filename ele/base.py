@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import hashlib
-import json
 import time
 import urllib
 import requests
@@ -72,7 +71,7 @@ class EleBase(object):
         """
         """
         if "code" in json_data and json_data["message"] != "ok":
-            raise APIError("{}: {}".format(json_data["code"], json_data["message"]))
+            raise APIError(u"{}: {}".format(json_data["code"], json_data["message"]))
 
     def _request(self, method, uri, **kwargs):
         """

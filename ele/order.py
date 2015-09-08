@@ -43,8 +43,19 @@ class Order(EleBase):
             "ip": ip
         }
 
-        re_data = self._post(uri, data=post_data)
-        return re_data['data']
+        if deliver_time:
+            post_data["deliver_time"] = deliver_time
+        if description:
+            post_data["description"] = description
+        if invoice:
+            post_data["invoice"] = invoice
+        if is_online_paid:
+            post_data["is_online_paid"] = is_online_paid
+        if validation:
+            post_data["validation"] = validation
+
+        re_data = self._post(uri, data=post_data).get("data")
+        return re_data
 
     def get_order(self, eleme_order_id):
         uri = '/order/%s/' % eleme_order_id
@@ -61,7 +72,7 @@ class Order(EleBase):
         params = {
             "tp_order_ids": tp_order_ids
         }
-        data = self._get(uri, params).get("data")
+        data = self._get(uri, params=params).get("data")
         return data
 
     def get_order_contact_info(self, eleme_order_id):

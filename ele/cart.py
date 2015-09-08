@@ -19,7 +19,7 @@ class Cart(EleBase):
             "food": food
         }
         re_data = self._post(uri, data=post_data)
-        return re_data['data']
+        return re_data.get("data")
 
     def update_cart(self, cart_id, phone, food):
         uri = '/cart/%s/' % cart_id
@@ -28,5 +28,5 @@ class Cart(EleBase):
             "food": food
         }
         re_data = self._put(uri, data=put_data)
-        return re_data['data']
+        return re_data.get("data")
 

@@ -17,7 +17,7 @@ class Restaurant(EleBase):
         """
         uri = '/restaurants'
         data = self._get(uri, params=kwargs).get("data", {})
-        return data.get("restaurants", [])
+        return data.get("restaurants")
 
     def get_restaurant(self, restaurant_id):
         """
@@ -33,4 +33,4 @@ class Restaurant(EleBase):
         # TODO :: permission error
         uri = '/restaurant/%s/food_categories/' % restaurant_id
         data = self._get(uri).get("data", {})
-        return data.get("food_categories", [])
+        return data.get("food_categories")

@@ -7,7 +7,7 @@ __author__ = 'way'
 
 class Food(EleBase):
     """
-    about food
+    About food
     """
     def __init__(self, consumer_key, consumer_secret):
         super(Food, self).__init__(consumer_key, consumer_secret)

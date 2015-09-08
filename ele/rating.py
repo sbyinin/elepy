@@ -18,7 +18,7 @@ class Rating(EleBase):
             "order_id": eleme_order_id
         }
         data = self._get(uri, params=params).get("data", {})
-        return data.get("items", [])
+        return data.get("items")
 
     def create_order_rating(self, eleme_order_id, service_rating, service_rating_text, comment_time, deliver_time=None):
         """

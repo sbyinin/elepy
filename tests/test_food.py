@@ -2,11 +2,10 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
-from ele.food import Food
-from way.test import test_config
-
 my_path = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, my_path + '/../')
+from config import test_config
+from ele.food import Food
 
 __author__ = 'way'
 

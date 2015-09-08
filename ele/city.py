@@ -15,4 +15,4 @@ class City(EleBase):
     def get_city_list(self):
         uri = '/cities'
         data = self._get(uri).get("data", {})
-        return data.get("cities", [])
+        return data.get("cities")

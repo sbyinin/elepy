@@ -5,8 +5,7 @@ import os
 
 my_path = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, my_path + '/../')
-
-from way.test import test_config
+from config import test_config
 from ele.city import City
 
 __author__ = 'way'

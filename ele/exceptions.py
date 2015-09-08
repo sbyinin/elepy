@@ -20,6 +20,6 @@ class ParseError(Exception):
 
 class APIError(Exception):
     """
-    借口错误
+    接口错误
     """
     pass
