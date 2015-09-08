@@ -14,7 +14,7 @@ clt = Rating(**test_config)
 
 def test_get_order_items_to_rate():
     items = clt.get_order_items_to_rate(100002585175710584)
-    print items
+    assert len(items) > 0
 
 
 def test_create_order_rating():
