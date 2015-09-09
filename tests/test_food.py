@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
+from ele import Client
+
 my_path = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, my_path + '/../')
 from config import test_config

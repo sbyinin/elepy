@@ -4,10 +4,7 @@ import hashlib
 import time
 import urllib
 import requests
-from ele.exceptions import APIError
-
-__author__ = 'way'
-
+from .exceptions import APIError
 
 BASE_URL = "http://openapi.ele.me/v2"
 
@@ -67,14 +64,17 @@ class EleBase(object):
         sig = self.gen_sig_hash(url)
         return u'%s&sig=%s' % (url, sig)
 
-    def _check_error(self, json_data):
+    def _check_error(self, r):
         """
         """
+        r.raise_for_status()
+        json_data = r.json()
         if "code" in json_data and json_data["message"] != "ok":
             raise APIError(u"{}: {}".format(json_data["code"], json_data["message"]))
 
     def _request(self, method, uri, **kwargs):
         """
+        kwargs中的params 为url参数, data为post 或者put的数据
         """
         sig_params = {}
         ext = {}
@@ -82,19 +82,14 @@ class EleBase(object):
             for p_key in kwargs.get("params"):
                 sig_params[p_key] = '%s'.encode('utf8') % kwargs.get("params")[p_key]
         if isinstance(kwargs.get("data"), dict):
-            # body = json.dumps(kwargs["data"])
-            # body = body.encode('utf8')
             for d_key in kwargs.get("data"):
                 sig_params[d_key] = '%s'.encode('utf8') % kwargs.get("data")[d_key]
             ext["data"] = kwargs.get("data")
 
         url = self.gen_url_with_sig(uri, **sig_params)
-
         r = requests.request(method=method, url=url, **ext)
-        r.raise_for_status()
-        response_json = r.json()
-        self._check_error(response_json)
-        return response_json
+        self._check_error(r)
+        return r.json()
 
     def _post(self, uri, **kwargs):
         """

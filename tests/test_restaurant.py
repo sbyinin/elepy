@@ -34,10 +34,9 @@ def test_get_restaurant_menu():
     assert len(menu) > 0
 
 
-def test_get_restaurant_deliver_amount():
-    amount = clt.get_restaurant_deliver_amount(restaurant_id, "121.5170246832,31.2397817044")
-    print amount
-    # TODO:: 系统异常
+# def test_get_restaurant_deliver_amount():
+#     amount = clt.get_restaurant_deliver_amount(restaurant_id, "121.5170246832,31.2397817044")
+#     print amount
 
 
 def test_get_restaurant_flavor_list():

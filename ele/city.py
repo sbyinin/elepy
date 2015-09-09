@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from ele.base import EleBase
-
-__author__ = 'way'
+from .base import EleBase
 
 
 class City(EleBase):
@@ -13,6 +11,6 @@ class City(EleBase):
         super(City, self).__init__(consumer_key, consumer_secret)
 
     def get_city_list(self):
-        uri = '/cities'
-        data = self._get(uri).get("data", {})
-        return data.get("cities")
+        uri = '/cities/'
+        re_data = self._get(uri).get("data", {})
+        return re_data.get("cities")

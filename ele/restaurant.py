@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from ele.base import EleBase
-
-__author__ = 'way'
+from .base import EleBase
 
 
 class Restaurant(EleBase):
@@ -16,8 +14,8 @@ class Restaurant(EleBase):
         """
         """
         uri = '/restaurants'
-        data = self._get(uri, params=kwargs).get("data", {})
-        return data.get("restaurants")
+        re_data = self._get(uri, params=kwargs).get("data", {})
+        return re_data.get("restaurants")
 
     def search_restaurants_count(self, geo, is_inside=1, keyword=''):
         """
@@ -32,8 +30,8 @@ class Restaurant(EleBase):
         }
         if keyword:
             params["keyword"] = keyword
-        data = self._get(uri, params=params).get("data", {})
-        return data.get("count")
+        re_data = self._get(uri, params=params).get("data", {})
+        return re_data.get("count")
 
     def get_restaurant(self, restaurant_id):
         """
@@ -42,41 +40,25 @@ class Restaurant(EleBase):
         :return:
         """
         uri = '/restaurant/%s/' % restaurant_id
-        data = self._get(uri).get("data", {})
-        return data.get("restaurant")
+        re_data = self._get(uri).get("data", {})
+        return re_data.get("restaurant")
 
     def get_restaurant_food_category_list(self, restaurant_id):
+        """
+        """
         uri = '/restaurant/%s/food_categories/' % restaurant_id
-        data = self._get(uri).get("data", {})
-        return data.get("food_categories")
+        re_data = self._get(uri).get("data", {})
+        return re_data.get("food_categories")
 
-    def get_restaurant_menu(self, restaurant_id, tp_id=0):
+    def get_restaurant_menu(self, restaurant_id):
         """
         菜单
         :param restaurant_id:
-        :param tp_id: 暂不使用
         :return:
         """
         uri = '/restaurant/%s/menu/' % restaurant_id
-        params = {
-            # "tp_id": tp_id
-        }
-        data = self._get(uri, params=params).get("data", {})
-        return data.get("restaurant_menu")
-
-    def get_restaurant_deliver_amount(self, restaurant_id, geo):
-        """
-        餐厅起送价
-        :param restaurant_id:
-        :param geo:
-        :return:
-        """
-        uri = '/restaurant/%s/deliver_amount/' % restaurant_id
-        params = {
-            "geo": geo
-        }
-        data = self._get(uri, params=params).get("data", {})
-        return data.get("deliver_amount")
+        re_data = self._get(uri).get("data", {})
+        return re_data.get("restaurant_menu")
 
     def get_restaurant_flavor_list(self):
         """
@@ -84,7 +66,5 @@ class Restaurant(EleBase):
         :return: List
         """
         uri = '/restaurant/flavors/'
-        data = self._get(uri).get("data", {})
-        return data.get("flavors")
-
-
+        re_data = self._get(uri).get("data", {})
+        return re_data.get("flavors")

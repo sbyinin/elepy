@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from ele.base import EleBase
-
-__author__ = 'way'
+from .base import EleBase
 
 
 class Food(EleBase):
@@ -14,20 +12,20 @@ class Food(EleBase):
 
     def get_food_category(self, food_category_id):
         uri = '/food_category/%s/' % food_category_id
-        data = self._get(uri).get("data", {})
-        return data.get("food_category")
+        re_data = self._get(uri).get("data", {})
+        return re_data.get("food_category")
 
     def get_food_list_by_category_id(self, food_category_id):
-        uri = '/food_category/%s/foods' % food_category_id
-        data = self._get(uri).get("data", {})
-        return data.get("foods")
+        uri = '/food_category/%s/foods/' % food_category_id
+        re_data = self._get(uri).get("data", {})
+        return re_data.get("foods")
 
     def get_food(self, food_id):
         uri = '/food/%s/' % food_id
-        data = self._get(uri).get("data", {})
-        return data.get("food")
+        re_data = self._get(uri).get("data", {})
+        return re_data.get("food")
 
     def search_food(self, **kwargs):
-        uri = '/foods'
-        data = self._get(uri, params=kwargs).get("data", {})
-        return data.get("foods")
+        uri = '/foods/'
+        re_data = self._get(uri, params=kwargs).get("data", {})
+        return re_data.get("foods")

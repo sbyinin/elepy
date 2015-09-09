@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from ele.base import EleBase
-
-__author__ = 'way'
+from .base import EleBase
 
 
 class Rating(EleBase):
@@ -17,8 +15,8 @@ class Rating(EleBase):
         params = {
             "order_id": eleme_order_id
         }
-        data = self._get(uri, params=params).get("data", {})
-        return data.get("items")
+        re_data = self._get(uri, params=params).get("data", {})
+        return re_data.get("items")
 
     def create_order_rating(self, eleme_order_id, service_rating, service_rating_text, comment_time, deliver_time=None):
         """
@@ -47,7 +45,7 @@ class Rating(EleBase):
         :param item_id:
         :param rating:
         :param rating_text:
-        :return:
+        :return:    True or False
         """
         uri = '/rating/item/%s/' % item_id
         data = {
