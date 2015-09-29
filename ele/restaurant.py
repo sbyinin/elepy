@@ -10,11 +10,28 @@ class Restaurant(EleBase):
     def __init__(self, consumer_key, consumer_secret):
         super(Restaurant, self).__init__(consumer_key, consumer_secret)
 
-    def search_restaurants(self, **kwargs):
+    def search_restaurants(self, geo, restaurant_ids=None, keyword=None,
+                           city_id=None, order_by=None, busy_level=None,
+                           flavor=None, invoice=None, payment=None, offset=None,
+                           limit=None):
         """
         """
+        params = {
+            "geo": geo,
+            "restaurant_ids": restaurant_ids,
+            "keyword": keyword,
+            "city_id": city_id,
+            "order_by": order_by,
+            "busy_level": busy_level,
+            "flavor": flavor,
+            "invoice": invoice,
+            "payment": payment,
+            "offset": offset,
+            "limit": limit
+        }
+
         uri = '/restaurants'
-        re_data = self._get(uri, params=kwargs).get("data", {})
+        re_data = self._get(uri, params=params).get("data", {})
         return re_data.get("restaurants")
 
     def search_restaurants_count(self, geo, is_inside=1, keyword=''):

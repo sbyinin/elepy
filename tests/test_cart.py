@@ -36,6 +36,7 @@ def _create_cart_body(food_ids):
 
 def test_create_cart():
     food_ids = [30358057]
-    # cart = clt.create_cart("18842335250", _create_cart_body(food_ids))
-    # assert len(cart["id"]) == 32
+    cart = clt.create_cart("18842335250", _create_cart_body(food_ids))
+    print cart
+    assert len(cart["id"]) == 32
     # 073c39bc554911e5a3ddb82a72dc05f8

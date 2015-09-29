@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
+from ele.exceptions import APIError
 from ele.order import Order
 
 my_path = os.path.dirname(os.path.abspath(__file__))
@@ -55,5 +56,8 @@ def test_cancel_order():
 
 
 def test_update_order_payment_status():
-    result = clt.update_order_payment_status(100002585175710584)
-    print result
+    try:
+        result = clt.update_order_payment_status(100002585175710584)
+        assert result is not None
+    except APIError:
+        pass

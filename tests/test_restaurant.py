@@ -14,8 +14,18 @@ restaurant_id = 28705300
 clt = Restaurant(**test_config)
 
 
+def test_search_restaurants_near_by():
+    restaurants = clt.search_restaurants("121.5170246832,31.2397817044")
+    assert len(restaurants) > 0
+
+
+def test_search_restaurants_city_keyword():
+    restaurants = clt.search_restaurants("121.5170246832,31.2397817044", city_id=1, keyword=u'小吃')
+    assert len(restaurants) > 0
+
+
 def test_search_restaurants_count():
-    count = clt.search_restaurants_count("121.5170246832,31.2397817044", 1, u'小吃')
+    count = clt.search_restaurants_count("121.5170246832,31.2397817044", 1, keyword=u'')
     assert count > 0
 
 

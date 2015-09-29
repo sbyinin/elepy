@@ -6,7 +6,8 @@ import urllib
 import requests
 from .exceptions import APIError
 
-BASE_URL = "http://openapi.ele.me/v2"
+# BASE_URL = "http://openapi.ele.me/v2"
+BASE_URL = "http://openapi.elenet.me"
 
 
 class EleBase(object):
@@ -80,10 +81,14 @@ class EleBase(object):
         ext = {}
         if isinstance(kwargs.get("params"), dict):
             for p_key in kwargs.get("params"):
-                sig_params[p_key] = '%s'.encode('utf8') % kwargs.get("params")[p_key]
+                if kwargs.get("params")[p_key] not in [None, '']:
+                    sig_params[p_key] = '%s'.encode('utf8') % kwargs.get("params")[p_key]
         if isinstance(kwargs.get("data"), dict):
             for d_key in kwargs.get("data"):
-                sig_params[d_key] = '%s'.encode('utf8') % kwargs.get("data")[d_key]
+                if kwargs.get("data")[d_key] not in [None, '']:
+                    sig_params[d_key] = '%s'.encode('utf8') % kwargs.get("data")[d_key]
+                else:
+                    del kwargs.get("data")[d_key]
             ext["data"] = kwargs.get("data")
 
         url = self.gen_url_with_sig(uri, **sig_params)
